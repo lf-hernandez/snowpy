@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'insights'
 ]
 
 MIDDLEWARE = [
@@ -77,11 +78,11 @@ WSGI_APPLICATION = 'snowpy.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-	'default': {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+	'dw': {
 			'ENGINE': 'django_snowflake',
 			'NAME': os.getenv("SNOWFLAKE_TARGET"),
 			'SCHEMA': os.getenv("SNOWFLAKE_SCHEMA"),
@@ -92,7 +93,7 @@ DATABASES = {
 		}
 }
 
-
+DATABASE_ROUTERS = ['insights.dw_router']
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
